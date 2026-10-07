@@ -1,0 +1,3 @@
+/health /health 200
+/desktop/* /desktop/:splat 200
+/* /index.html 200
