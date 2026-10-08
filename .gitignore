@@ -20,12 +20,9 @@ pids
 node_modules/
 
 # Production build output
+dist/
 dist-ssr/
-
-# Keep Electron update files
-dist/*
-!dist/desktop/
-!dist/desktop/**
+dist-packages/
 
 # Local environment files
 .env
