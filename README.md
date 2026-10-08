@@ -1,6 +1,6 @@
 # SmartPrinter Desktop Update Server
 
-Official software release and auto-update server for **SmartPrinter Desktop** clients (`https://updates.smartprinter.in`).
+Official software release and auto-update server for **SmartPrinter Desktop** clients (`https://software.smartprinter.in`).
 
 This server provides:
 1. Public downloads for all 4 Windows platform builds.
@@ -69,10 +69,10 @@ dist/desktop/
 
 | Platform Channel | Target OS | Architecture | Electron | Update URL Feed |
 | :--- | :--- | :---: | :---: | :--- |
-| **Modern x64** | Windows 10 & 11 (64-bit) | x64 | 31.7.7 | `https://updates.smartprinter.in/desktop/x64/` |
-| **Modern x86** | Windows 10 (32-bit only)* | x86 | 31.7.7 | `https://updates.smartprinter.in/desktop/x86/` |
-| **Legacy x64** | Windows 7 SP1, 8, 8.1 (64-bit) | x64 | 22.3.27 | `https://updates.smartprinter.in/desktop/legacy/x64/` |
-| **Legacy x86** | Windows 7 SP1, 8, 8.1 (32-bit) | x86 | 22.3.27 | `https://updates.smartprinter.in/desktop/legacy/x86/` |
+| **Modern x64** | Windows 10 & 11 (64-bit) | x64 | 31.7.7 | `https://software.smartprinter.in/desktop/x64/` |
+| **Modern x86** | Windows 10 (32-bit only)* | x86 | 31.7.7 | `https://software.smartprinter.in/desktop/x86/` |
+| **Legacy x64** | Windows 7 SP1, 8, 8.1 (64-bit) | x64 | 22.3.27 | `https://software.smartprinter.in/desktop/legacy/x64/` |
+| **Legacy x86** | Windows 7 SP1, 8, 8.1 (32-bit) | x86 | 22.3.27 | `https://software.smartprinter.in/desktop/legacy/x86/` |
 
 *\* Windows 11 has no 32-bit edition. Modern x86 specifically targets 32-bit Windows 10.*
 
@@ -115,16 +115,16 @@ Artifacts are generated in `dist-packages/`:
   - `latest.yml`
 
 ### Step 3: Upload to Update Server
-Upload the generated files directly into their respective directories on `updates.smartprinter.in`:
-- `modern-x64` artifacts $\rightarrow$ `/var/www/updates.smartprinter.in/dist/desktop/x64/`
-- `modern-x86` artifacts $\rightarrow$ `/var/www/updates.smartprinter.in/dist/desktop/x86/`
-- `legacy-x64` artifacts $\rightarrow$ `/var/www/updates.smartprinter.in/dist/desktop/legacy/x64/`
-- `legacy-x86` artifacts $\rightarrow$ `/var/www/updates.smartprinter.in/dist/desktop/legacy/x86/`
+Upload the generated files directly into their respective directories on `software.smartprinter.in`:
+- `modern-x64` artifacts $\rightarrow$ `/var/www/software.smartprinter.in/dist/desktop/x64/`
+- `modern-x86` artifacts $\rightarrow$ `/var/www/software.smartprinter.in/dist/desktop/x86/`
+- `legacy-x64` artifacts $\rightarrow$ `/var/www/software.smartprinter.in/dist/desktop/legacy/x64/`
+- `legacy-x86` artifacts $\rightarrow$ `/var/www/software.smartprinter.in/dist/desktop/legacy/x86/`
 
 ### Step 4: Verify Live Feed
-1. Open in browser: `https://updates.smartprinter.in/desktop/x64/latest.yml`
+1. Open in browser: `https://software.smartprinter.in/desktop/x64/latest.yml`
 2. Confirm the YAML shows the new `version: <new-version>`.
-3. Check the download page: `https://updates.smartprinter.in/`
+3. Check the download page: `https://software.smartprinter.in/`
 4. Confirm the Modern x64 card shows the new version, file size, and the download button is active.
 
 ### Step 5: Test Client Auto-Update
@@ -141,22 +141,22 @@ Because the installers are ~100MB+ each, hosting requires support for:
 2. Proper caching (`no-cache` for `latest.yml`, long cache for `.exe` and `.blockmap`).
 
 ### Option A: Standard Linux VPS / Nginx (Recommended)
-1. Copy `dist/` to `/var/www/updates.smartprinter.in/dist`.
-2. Apply `nginx.conf` (included in repository root) to `/etc/nginx/sites-available/updates.smartprinter.in`.
-3. Enable site: `sudo ln -s /etc/nginx/sites-available/updates.smartprinter.in /etc/nginx/sites-enabled/`.
+1. Copy `dist/` to `/var/www/software.smartprinter.in/dist`.
+2. Apply `nginx.conf` (included in repository root) to `/etc/nginx/sites-available/software.smartprinter.in`.
+3. Enable site: `sudo ln -s /etc/nginx/sites-available/software.smartprinter.in /etc/nginx/sites-enabled/`.
 4. Test and reload: `sudo nginx -t && sudo systemctl reload nginx`.
-5. Obtain SSL certificate: `sudo certbot --nginx -d updates.smartprinter.in`.
+5. Obtain SSL certificate: `sudo certbot --nginx -d software.smartprinter.in`.
 
 ### Option B: Cloudflare Pages / AWS S3 + CloudFront
 1. Connect repository or deploy `dist/` to Cloudflare Pages.
 2. The included `public/_headers` and `public/_redirects` will automatically configure CORS, byte ranges, and SPA routing.
-3. Configure CNAME DNS record for `updates.smartprinter.in`.
+3. Configure CNAME DNS record for `software.smartprinter.in`.
 
 ---
 
 ## 6. Health Check Endpoint
 ```http
-GET https://updates.smartprinter.in/health
+GET https://software.smartprinter.in/health
 ```
 Response:
 ```json

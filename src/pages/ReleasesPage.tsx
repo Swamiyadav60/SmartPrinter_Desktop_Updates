@@ -47,7 +47,7 @@ export default function ReleasesPage() {
                       rel="noreferrer"
                       className="text-emerald-700 hover:text-emerald-900 underline"
                     >
-                      https://updates.smartprinter.in{p.channelPath}
+                      https://software.smartprinter.in{p.channelPath}
                     </a>
                   </td>
                 </tr>

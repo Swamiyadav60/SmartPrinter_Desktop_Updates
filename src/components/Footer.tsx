@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-mono text-slate-600">
               <span>Domain:</span>
-              <strong className="text-slate-800">updates.smartprinter.in</strong>
+              <strong className="text-slate-800">software.smartprinter.in</strong>
             </span>
           </div>
         </div>
